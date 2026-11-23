@@ -1,0 +1,13 @@
+{
+  "input_rows": 50000,
+  "rule_hits": {
+    "amount_le_0": 3000,
+    "order_id_null": 50,
+    "province_whitespace": 2500,
+    "order_id_duplicate": 1500
+  },
+  "after_filters": 46950,
+  "output_rows": 45450,
+  "dropped_total": 4550,
+  "province_distinct_after": 1
+}

@@ -1,0 +1,82 @@
+{
+  "env": {
+    "spark": "3.5.3",
+    "master": "local[4]",
+    "java": "1.8.0_202"
+  },
+  "days": 30,
+  "base_merchants": 100000,
+  "new_per_day": 200,
+  "snapshot_rows": 3087000,
+  "zip_rows": 195387,
+  "compression": 15.8,
+  "open_rows_latest": 105800,
+  "incremental_changed": 3149,
+  "incremental_new": 200,
+  "incremental_vs_backfill_diff": 0,
+  "snapshot_check_mismatch": {
+    "2026-09-01": 0,
+    "2026-09-08": 0,
+    "2026-09-15": 0,
+    "2026-09-22": 0,
+    "2026-09-30": 0
+  },
+  "duplicate_valid_rows": {
+    "2026-09-01": 0,
+    "2026-09-08": 0,
+    "2026-09-15": 0,
+    "2026-09-22": 0,
+    "2026-09-30": 0
+  },
+  "sample_chain": [
+    {
+      "merchant_id": 57138,
+      "level": "SMB",
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-02"
+    },
+    {
+      "merchant_id": 57138,
+      "level": "KA",
+      "start_date": "2026-09-03",
+      "end_date": "2026-09-05"
+    },
+    {
+      "merchant_id": 57138,
+      "level": "SMB",
+      "start_date": "2026-09-06",
+      "end_date": "2026-09-11"
+    },
+    {
+      "merchant_id": 57138,
+      "level": "KA",
+      "start_date": "2026-09-12",
+      "end_date": "2026-09-14"
+    },
+    {
+      "merchant_id": 57138,
+      "level": "SMB",
+      "start_date": "2026-09-15",
+      "end_date": "2026-09-19"
+    },
+    {
+      "merchant_id": 57138,
+      "level": "KA",
+      "start_date": "2026-09-20",
+      "end_date": "2026-09-20"
+    },
+    {
+      "merchant_id": 57138,
+      "level": "SMB",
+      "start_date": "2026-09-21",
+      "end_date": "2026-09-26"
+    },
+    {
+      "merchant_id": 57138,
+      "level": "KA",
+      "start_date": "2026-09-27",
+      "end_date": "9999-12-31"
+    }
+  ],
+  "seconds": 83.4
+}

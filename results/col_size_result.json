@@ -1,0 +1,16 @@
+{
+  "partition": "C:\\bigdata-lab\\warehouse\\ods_order\\dt=2026-09-15",
+  "files": 8,
+  "rows": 5000179,
+  "column_bytes": {
+    "amount": 26661455,
+    "order_id": 20610395,
+    "user_id": 20012461,
+    "merchant_id": 13215759,
+    "province": 1896290,
+    "status": 1270838
+  },
+  "all_columns_mb": 79.79,
+  "needed_columns_mb": 38.03,
+  "read_ratio": 0.477
+}

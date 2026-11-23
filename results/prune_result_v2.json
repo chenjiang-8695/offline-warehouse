@@ -1,0 +1,65 @@
+{
+  "env": {
+    "spark": "3.5.3",
+    "master": "local[4]",
+    "java": "1.8.0_202",
+    "driver_mem": "6g",
+    "aqe": "false",
+    "method": "同一 session、同一 SQL，各跑 3 次取中位数"
+  },
+  "q1_full_scan": {
+    "label": "Q1 全表 30 天 groupBy",
+    "median_sec": 58.4,
+    "runs": [
+      88.5,
+      58.4,
+      57.7
+    ],
+    "rows": 3000000
+  },
+  "q2_partition_prune": {
+    "label": "Q2 分区裁剪 单日 groupBy",
+    "median_sec": 4.7,
+    "runs": [
+      8.6,
+      4.7,
+      4.6
+    ],
+    "rows": 100000
+  },
+  "q3_col_prune": {
+    "label": "Q3 分区裁剪 + 列裁剪",
+    "median_sec": 4.7,
+    "runs": [
+      4.8,
+      4.7,
+      4.7
+    ],
+    "rows": 100000
+  },
+  "shuffle_parts": {
+    "200": {
+      "label": "Q3 shuffle=200",
+      "median_sec": 4.6,
+      "runs": [
+        4.6,
+        4.6,
+        4.6
+      ],
+      "rows": 100000
+    },
+    "20": {
+      "label": "Q3 shuffle=20",
+      "median_sec": 1.4,
+      "runs": [
+        1.5,
+        1.4,
+        1.4
+      ],
+      "rows": 100000
+    }
+  },
+  "shuffle_speedup": 3.29,
+  "prune_speedup": 12.43,
+  "col_prune_speedup": 1.0
+}

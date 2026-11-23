@@ -1,0 +1,39 @@
+{
+  "total_rows": 150000000,
+  "null_merchant_rows": 37497057,
+  "before_sec": 53.9,
+  "before_dist": {
+    "label": "before",
+    "partitions": 200,
+    "max_rows": 15293,
+    "median_rows": 14999,
+    "skew_ratio": 1.0,
+    "top5_rows": [
+      15293,
+      15278,
+      15254,
+      15250,
+      15246
+    ]
+  },
+  "after_sec": 378.2,
+  "speedup": 0.14,
+  "salt": 10,
+  "after_dist": {
+    "label": "after",
+    "partitions": 200,
+    "max_rows": 15347,
+    "median_rows": 15000,
+    "skew_ratio": 1.0,
+    "top5_rows": [
+      15347,
+      15261,
+      15251,
+      15240,
+      15235
+    ]
+  },
+  "gmv_before": 375775525709.9327,
+  "gmv_after": 375775525709.9258,
+  "gmv_match": true
+}

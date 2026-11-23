@@ -1,0 +1,37 @@
+{
+  "env": {
+    "spark": "3.5.3",
+    "master": "local[4]",
+    "java": "1.8.0_202",
+    "driver_mem": "6g",
+    "shuffle_partitions": 40
+  },
+  "dim_coverage": "75%",
+  "ods": {
+    "rows": 150000000,
+    "negative_amount": 0,
+    "null_order_id": 0,
+    "seconds": 14.0
+  },
+  "dwd": {
+    "rows": 150000000,
+    "dropped": 0,
+    "dim_merchants": 100000,
+    "dim_covered": 75000,
+    "unknown_merchant_rows": 37492367,
+    "unknown_share": 0.2499,
+    "seconds": 161.0
+  },
+  "dws": {
+    "rows": 2250030,
+    "seconds": 83.2
+  },
+  "ads": {
+    "daily_rows": 30,
+    "top_rows": 300,
+    "unknown_share_overall": 0.2499,
+    "gmv_total": 375775525709.93,
+    "seconds": 63.2
+  },
+  "total_seconds": 321.4
+}

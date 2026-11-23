@@ -1,0 +1,27 @@
+{
+  "q1_full_scan": {
+    "label": "Q1 全表 30 天 groupBy",
+    "seconds": 61.7,
+    "rows": 3000000
+  },
+  "q2_partition_prune": {
+    "label": "Q2 分区裁剪 单日 groupBy",
+    "seconds": 8.3,
+    "rows": 100000
+  },
+  "q3_col_prune": {
+    "label": "Q3 分区裁剪 + 列裁剪 groupBy",
+    "seconds": 4.8,
+    "rows": 100000
+  },
+  "shuffle_parts": {
+    "200": {
+      "seconds": 4.6,
+      "rows": 100000
+    },
+    "20": {
+      "seconds": 1.7,
+      "rows": 100000
+    }
+  }
+}
