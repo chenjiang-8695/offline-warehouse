@@ -128,15 +128,17 @@ py -3.14 ads_to_mysql.py
 
 驱动：`mysql-connector-j-8.4.0.jar`（Spark 3.5 自带的是 5.1 版驱动，连 MySQL 8+ 会踩 `caching_sha2_password`）。
 
-实测（本机另起了一个 3307 端口的实例，不动原有的 3306）：
+实测（本机 MySQL 8.0.46，127.0.0.1:3306，服务名 MySQL80）：
 
 ```bash
-mysqld --initialize-insecure --datadir=C:/bigdata-lab/mysql-dev/data --console
-mysqld --datadir=C:/bigdata-lab/mysql-dev/data --port=3307 --bind-address=127.0.0.1 --mysqlx=OFF --console
-mysql -u root -h 127.0.0.1 -P 3307 < sql/ads_ddl.sql
+# 建库建表
+mysql -u root -p < sql/ads_ddl.sql
+# Spark JDBC 导出（读 parquet -> 写库 -> 从库里读回来）
+set MYSQL_USER=root & set MYSQL_PASSWORD=******
+py -3.14 ads_to_mysql.py
 ```
 
-回读校验（直接从 MySQL 查，不经过 Spark）：
+回读校验（用 mysql 客户端独立查询，不经过 Spark，结果见 `results/mysql_verify.json`）：
 
 | 指标 | 值 |
 |---|---|
@@ -144,9 +146,11 @@ mysql -u root -h 127.0.0.1 -P 3307 < sql/ads_ddl.sql
 | GMV 合计 | 375,775,525,709.93（与 Parquet 一致） |
 | 订单数 | 150,000,000 |
 | 未知商户订单 | 37,492,367（24.99%） |
-| ads_top_merchant | 300 行（30 天 × Top10），单日第一行是 UNKNOWN 桶 31.3 亿 |
+| ads_top_merchant | 300 行（30 天 × Top10） |
+| 2026-09-15 前三 | UNKNOWN 31.345 亿 / M000064 797.9 万 / M000206 795.3 万 |
 
 > UNKNOWN 排在每日 Top1 是正常的：它是「维表匹配不到」的汇总桶，正好说明打标后没有丢数据。
+> 换实例只改 `MYSQL_URL` 环境变量即可——导出脚本对 3306/3307 是同一套代码。
 
 ## 目录
 
@@ -161,7 +165,7 @@ clean_rules_test.py    清洗规则命中验证
 ads_to_mysql.py        ADS 落 MySQL（JDBC）
 demo_share.py          小数据演示：只看执行计划不看秒数
 sql/ads_ddl.sql        ADS 表结构
-results/*.json         所有实测结果
+results/*.json         所有实测结果（含 mysql_verify.json：落库后的独立回读校验）
 ```
 
 ## 已知不足

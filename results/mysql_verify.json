@@ -1,0 +1,36 @@
+{
+  "server": "MySQL 8.0.46 @ 127.0.0.1:3306",
+  "database": "warehouse",
+  "tables": {
+    "ads_daily_summary": {
+      "rows": 30,
+      "gmv_total": 375775525709.93,
+      "orders": 150000000,
+      "unknown_orders": 37492367,
+      "unknown_share": 0.2499
+    },
+    "ads_top_merchant": {
+      "rows": 300,
+      "days": 30,
+      "top_per_day": 10
+    }
+  },
+  "sample_day": {
+    "dt": "2026-09-15",
+    "top1": {
+      "merchant_key": "UNKNOWN",
+      "gmv": 3134500963.96,
+      "order_cnt": 1250556
+    },
+    "top2": {
+      "merchant_key": "M000064",
+      "gmv": 7979004.94
+    },
+    "top3": {
+      "merchant_key": "M000206",
+      "gmv": 7952577.77
+    }
+  },
+  "readback_matches_parquet": true,
+  "note": "Spark JDBC 写入后，用 mysql 客户端独立查询核对，不经过 Spark"
+}
