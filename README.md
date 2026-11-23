@@ -128,6 +128,26 @@ py -3.14 ads_to_mysql.py
 
 驱动：`mysql-connector-j-8.4.0.jar`（Spark 3.5 自带的是 5.1 版驱动，连 MySQL 8+ 会踩 `caching_sha2_password`）。
 
+实测（本机另起了一个 3307 端口的实例，不动原有的 3306）：
+
+```bash
+mysqld --initialize-insecure --datadir=C:/bigdata-lab/mysql-dev/data --console
+mysqld --datadir=C:/bigdata-lab/mysql-dev/data --port=3307 --bind-address=127.0.0.1 --mysqlx=OFF --console
+mysql -u root -h 127.0.0.1 -P 3307 < sql/ads_ddl.sql
+```
+
+回读校验（直接从 MySQL 查，不经过 Spark）：
+
+| 指标 | 值 |
+|---|---|
+| ads_daily_summary | 30 行 |
+| GMV 合计 | 375,775,525,709.93（与 Parquet 一致） |
+| 订单数 | 150,000,000 |
+| 未知商户订单 | 37,492,367（24.99%） |
+| ads_top_merchant | 300 行（30 天 × Top10），单日第一行是 UNKNOWN 桶 31.3 亿 |
+
+> UNKNOWN 排在每日 Top1 是正常的：它是「维表匹配不到」的汇总桶，正好说明打标后没有丢数据。
+
 ## 目录
 
 ```

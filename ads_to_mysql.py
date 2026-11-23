@@ -20,7 +20,7 @@ pwd = os.environ.get("MYSQL_PASSWORD", "")
 url = os.environ.get("MYSQL_URL", "jdbc:mysql://127.0.0.1:3306/warehouse?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai")
 
 if not pwd:
-    sys.exit("请先设置 MYSQL_PASSWORD 环境变量")
+    print("提示：MYSQL_PASSWORD 为空，按空密码连接（本地新建的 dev 实例常见）")
 
 spark = (
     SparkSession.builder.appName("ads_to_mysql")
